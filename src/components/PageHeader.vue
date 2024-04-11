@@ -1,21 +1,13 @@
-<!-- PageHeader.vue -->
 <template>
-  <header>
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/board/list">게시판</router-link>
+  <header class="bg-blue-500 p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-white text-1xl font-bold">Favorite Song</h1>
+      <nav>
+        <ul class="flex space-x-4">
+          <li><a href="#" class="text-white">노래찾기</a></li>
+          <li><a href="#" class="text-white">즐겨찾기</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
-  <hr/>
 </template>
-
-<script>
-export default {
-
-}
-</script>
-
-<style scoped>
-
-</style>

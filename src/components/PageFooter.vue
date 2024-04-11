@@ -1,15 +1,7 @@
-<!-- PageFooter.vue -->
 <template>
-  <hr/>
-  <footer>
-    여기는 footer 자리입니다.
+  <footer class="bg-blue-500 p-4 mt-8">
+    <div class="container mx-auto text-center text-white">
+      <p>© Copyright Kim Jae Sung.</p>
+    </div>
   </footer>
 </template>
-
-<script>
-export default {}
-</script>
-
-<style scoped>
-
-</style>

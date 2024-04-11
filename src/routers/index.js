@@ -1,11 +1,11 @@
 import { createWebHistory, createRouter } from "vue-router";
-import TestComponent from "@/components/TestComponent.vue";
+import SongSearch from "@/components/SongSearch.vue";
 
 const routes = [
     {
-        path: "/test",
-        name: "TestComponent",
-        component: TestComponent,
+        path: "/search",
+        name: "SongSearch",
+        component: SongSearch,
     }
 ];
 
