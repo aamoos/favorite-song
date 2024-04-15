@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-blue-500 p-4">
+  <header v-if="showHeader" class="bg-blue-500 p-4">
     <div class="container mx-auto flex justify-between items-center">
       <h1 class="text-white text-1xl font-bold">Favorite Song</h1>
       <nav>
@@ -12,3 +12,16 @@
     </div>
   </header>
 </template>
+
+<script>
+export default {
+  computed: {
+    showHeader(){
+      return this.$route.path !== '/';
+    }
+  },
+  methods: {
+
+  }
+}
+</script>
