@@ -66,7 +66,7 @@ export default {
   methods: {
     //소셜로그인
     socialLogin(target){
-      window.location.href = process.env.VUE_APP_BACKEND_URL+'/oauth2/authorize/'+target+'?redirect_uri='+process.env.VUE_APP_FRONTEND_URL+'/redirect';
+      window.location.href = process.env.VUE_APP_BACKEND_URL+'/oauth2/authorize/'+target+'?redirect_uri='+process.env.VUE_APP_FRONTEND_URL+'/oauth2/redirect';
     },
   }
 }
