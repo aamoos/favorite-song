@@ -112,16 +112,15 @@ const signupCheck = async () => {
       userId: user.userId
     });
 
-    if(response.data){
+    if(response.statusCode == "OK"){
       //이메일 발송
       sendEmail();
 
       //timer
       toggleTimer();
-    }else{
-      alert("이미 동일한 아이디의 회원이 존재합니다.")
     }
   } catch (error) {
+    alert(error.response.data.message)
     console.error('Error occurred while saving:', error);
   }
 };
