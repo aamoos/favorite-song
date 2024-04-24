@@ -6,15 +6,13 @@
   </footer>
 </template>
 
-<script>
-export default {
-  computed: {
-    showFooter(){
-      return this.$route.path !== '/';
-    }
-  },
-  methods: {
+<script setup>
+import { inject, computed } from 'vue';
 
-  }
-}
+const router = inject('router');
+
+const showFooter = computed(() => {
+  return !['/', '/join'].includes(router.currentRoute.value.path);
+});
+
 </script>

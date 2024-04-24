@@ -4,24 +4,32 @@
       <h1 class="text-white text-1xl font-bold">Favorite Song</h1>
       <nav>
         <ul class="flex space-x-4">
-          <li><a href="/search" class="text-white">노래찾기</a></li>
-          <li><a href="#" class="text-white">즐겨찾기</a></li>
-          <li><a href="#" class="text-white">로그아웃</a></li>
+          <li><a href="javascript:void(0)" class="text-white">노래찾기</a></li>
+          <li><a href="javascript:void(0)" class="text-white">즐겨찾기</a></li>
+          <li><a href="javascript:void(0)" @click="logout" class="text-white">로그아웃</a></li>
         </ul>
       </nav>
     </div>
   </header>
 </template>
 
-<script>
-export default {
-  computed: {
-    showHeader(){
-      return this.$route.path !== '/';
-    }
-  },
-  methods: {
+<script setup>
+import { inject, computed } from 'vue';
+const router = inject('router');
+const store = inject('store');
 
+const showHeader = computed(() => {
+  return !['/', '/join'].includes(router.currentRoute.value.path);
+});
+
+const logout = () => {
+  store.dispatch("logout");
+
+  const access_token = localStorage.getItem('accessToken');
+  if (access_token == null) {
+    // 로그아웃 성공 시 페이지 이동
+    router.push("/");
   }
-}
+};
+
 </script>
