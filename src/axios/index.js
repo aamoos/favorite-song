@@ -1,17 +1,17 @@
-import axioss from 'axios'
+// import axioss from 'axios'
 import store from '@/store/store' //store
 import jwtDecode from "vue-jwt-decode";
 import routers from '@/routers/index'      //router
 
-// Axios 인스턴스 생성
-const axios = axioss.create({
-  baseURL: process.env.VUE_APP_FRONTEND_URL
+import axios from 'axios'
+
+export const instance = axios.create({
+    baseURL: process.env.VUE_APP_FRONTEND_URL
 })
 
-// 요청 인터셉터
-axios.interceptors.request.use(
-  (config) => {
-    const currentURL = window.location.pathname;
+// Add a request interceptor
+instance.interceptors.request.use((config) => {
+      const currentURL = window.location.pathname;
 
     if( !config.url.includes("/auth")){
       // 요청 전에 수행할 작업
@@ -42,15 +42,14 @@ axios.interceptors.request.use(
         routers.push("/userLogin");
       }
     }
-    return config
-  },
-  (error) => {
-    return Promise.reject(error)
-  }
-)
+  return config
+}, function (error) {
+  // Do something with request error
+  return Promise.reject(error)
+})
 
-// 응답 인터셉터
-axios.interceptors.response.use(
+// Add a response interceptor
+instance.interceptors.response.use(
   response => response,
   async error => {
     const originalRequest = error.config
