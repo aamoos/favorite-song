@@ -112,7 +112,7 @@ const signupCheck = async () => {
       userId: user.userId
     });
 
-    if(response.statusCode == "OK"){
+    if(response.data.statusCode == "OK"){
       //이메일 발송
       sendEmail();
 
@@ -120,7 +120,7 @@ const signupCheck = async () => {
       toggleTimer();
     }
   } catch (error) {
-    alert(error.response.data.message)
+    alert(error.response.data.message);
     console.error('Error occurred while saving:', error);
   }
 };
@@ -150,8 +150,13 @@ const join = async () => {
     });
 
     console.log(response);
+    if(response.data.statusCode == "OK"){
+      alert("회원가입이 완료되었습니다.");
+      goLoginPage();
+    }
 
   } catch (error) {
+    alert(error.response.data.message);
     console.error('Error occurred while saving:', error);
   }
 };

@@ -37,7 +37,7 @@
       </div>
 
       <div class="mt-4">
-        <button
+        <button @click="login"
           class="flex w-full justify-center rounded-md bg-stone-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600">로그인</button>
       </div>
 
@@ -55,15 +55,34 @@
 import { inject, reactive, onMounted } from 'vue';
  
 const router = inject('router');
+const store = inject('store');
+
 const user = reactive({
   userId: '',
   password: '',
 });
 
+//로그인
+const login = async () => {
+  try {
+    await store.dispatch('login', {
+      userId : user.userId,
+      password : user.password
+    });
+    // Redirect to home page after login
+    router.push("/search");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//소셜로그인
 const socialLogin = (target) => {
   window.location.href = process.env.VUE_APP_BACKEND_URL + '/oauth2/authorize/' + target + '?redirect_uri=' + process.env.VUE_APP_FRONTEND_URL + '/oauth2/redirect';
 };
 
+
+//회원가입
 const join = () => {
   router.push("/join");
 };
