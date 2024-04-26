@@ -72,6 +72,7 @@ const login = async () => {
     // Redirect to home page after login
     router.push("/search");
   } catch (err) {
+    alert(err.response.data.message);
     console.log(err);
   }
 };
