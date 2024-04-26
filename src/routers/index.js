@@ -1,6 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 import PageLogin from "@/components/PageLogin.vue";
 import PageJoin from "@/components/PageJoin.vue";
+import PagePasswordFind from "@/components/PagePasswordFind.vue";
 import PageSearch from "@/components/PageSearch.vue";
 
 //oauth2 redirect
@@ -17,6 +18,12 @@ const routes = [
         path: "/join",
         name: "PageJoin",
         component: PageJoin,
+        meta: { requiresAuth: false },
+    },
+     {
+        path: "/passwordFind",
+        name: "PagePasswordFind",
+        component: PagePasswordFind,
         meta: { requiresAuth: false },
     },
     {

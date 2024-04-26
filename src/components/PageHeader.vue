@@ -19,7 +19,7 @@ const router = inject('router');
 const store = inject('store');
 
 const showHeader = computed(() => {
-  return !['/', '/join'].includes(router.currentRoute.value.path);
+  return !['/', '/join', '/passwordFind'].includes(router.currentRoute.value.path);
 });
 
 const logout = () => {

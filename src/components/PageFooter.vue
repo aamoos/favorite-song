@@ -12,7 +12,7 @@ import { inject, computed } from 'vue';
 const router = inject('router');
 
 const showFooter = computed(() => {
-  return !['/', '/join'].includes(router.currentRoute.value.path);
+  return !['/', '/join', '/passwordFind'].includes(router.currentRoute.value.path);
 });
 
 </script>

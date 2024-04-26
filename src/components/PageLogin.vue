@@ -20,7 +20,8 @@
         <div class="flex items-center justify-between">
           <label for="password" class="block text-sm font-medium leading-6 text-gray-900">패스워드</label>
           <div class="text-sm">
-            <a href="javascript:void(0)" class="font-semibold text-indigo-600 hover:text-indigo-500">비밀번호
+            <a @click="passwordFind" href="javascript:void(0)"
+              class="font-semibold text-indigo-600 hover:text-indigo-500">비밀번호
               찾기</a>
           </div>
         </div>
@@ -71,9 +72,9 @@ const login = async () => {
     });
     // Redirect to home page after login
     router.push("/search");
-  } catch (err) {
-    alert(err.response.data.message);
-    console.log(err);
+  } catch (error) {
+    alert(error.response.data.message);
+    console.log(error);
   }
 };
 
@@ -87,6 +88,11 @@ const socialLogin = (target) => {
 const join = () => {
   router.push("/join");
 };
+
+//비밀번호 찾기
+const passwordFind = () => {
+  router.push("/passwordFind");
+}
 
 onMounted(() => {
   const access_token = localStorage.getItem('accessToken');
