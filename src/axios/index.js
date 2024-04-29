@@ -39,7 +39,7 @@ instance.interceptors.request.use((config) => {
         }
       }else{
         console.log(currentURL);
-        routers.push("/userLogin");
+        routers.push("/");
       }
     }
   return config
