@@ -114,7 +114,7 @@ const signupCheck = async () => {
 
     if(response.data.statusCode == "OK"){
       //이메일 발송
-      sendEmail();
+      sendEmail("checkCode");
 
       //timer
       toggleTimer();
@@ -126,10 +126,11 @@ const signupCheck = async () => {
 };
 
 //이메일 발송
-const sendEmail = async () => {
+const sendEmail = async (type) => {
   try {
     const response = await axios.post('/auth/sendEmail', {
-      userId: user.userId
+       type: type
+      ,userId: user.userId
     });
 
     console.log(response);

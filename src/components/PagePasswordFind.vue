@@ -96,7 +96,7 @@ const passwordFindCheck = async () => {
 
     if(response.data.statusCode == "OK"){
       //이메일 발송
-      sendEmail();
+      sendEmail("checkCode");
 
       //timer
       toggleTimer();
@@ -108,10 +108,11 @@ const passwordFindCheck = async () => {
 };
 
 //이메일 발송
-const sendEmail = async () => {
+const sendEmail = async (type) => {
   try {
     const response = await axios.post('/auth/sendEmail', {
-      userId: user.userId
+       type: type
+      ,userId: user.userId
     });
 
     console.log(response);
@@ -131,6 +132,7 @@ const passwordFind = async () => {
 
     if(response.data.statusCode == "OK"){
       alert("변경된 임시 비밀번호를 메일로 전송하였습니다.");
+      router.push("/");
     }
 
   } catch (error) {
