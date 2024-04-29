@@ -5,7 +5,7 @@
       <nav>
         <ul class="flex space-x-4">
           <li><a href="javascript:void(0)" class="text-white">노래찾기</a></li>
-          <li><a href="javascript:void(0)" class="text-white">즐겨찾기</a></li>
+          <li><a href="javascript:void(0)" @click="search" class="text-white">즐겨찾기</a></li>
           <li><a href="javascript:void(0)" @click="logout" class="text-white">로그아웃</a></li>
         </ul>
       </nav>
@@ -21,6 +21,10 @@ const store = inject('store');
 const showHeader = computed(() => {
   return !['/', '/join', '/passwordFind'].includes(router.currentRoute.value.path);
 });
+
+const search = () => {
+  router.push("/search");
+};
 
 const logout = () => {
   store.dispatch("logout");

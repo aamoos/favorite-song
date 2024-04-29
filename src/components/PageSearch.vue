@@ -1,38 +1,116 @@
 <!-- src/components/PostList.vue -->
 <template>
-  <div class="container mx-auto py-4">
-    <div class="flex mb-4">
-      <select
-        class="px-3 py-2 rounded-md border-gray-300 focus:outline-none focus:border-indigo-500">
-        <option value="ky">금영노래방</option>
-        <option value="tj">TJ미디어</option>
-      </select>
-      <input type="text" placeholder="검색어를 입력하세요"
-        class="flex-1 ml-2 px-3 py-2 rounded-md border-gray-300 focus:outline-none focus:border-indigo-500">
-      <button @click="search" class="ml-2 bg-indigo-500 text-white px-4 py-2 rounded-md">검색</button>
+  <div class="container mx-auto py-4 mb-16">
+    <div class=" flex flex-col md:flex-row mb-4">
+    <select v-model="search.brand"
+      class="mb-2 md:mb-0 md:mr-4 px-3 py-2 rounded-md border-gray-300 focus:outline-none focus:border-indigo-500">
+      <option value="kumyoung">kumyoung</option>
+      <option value="tj">tj</option>
+      <option value="dam">dam</option>
+      <option value="joysound">joysound</option>
+    </select>
+    <select v-model="search.searchType"
+      class="mb-2 md:mb-0 md:mr-4 px-3 py-2 rounded-md border-gray-300 focus:outline-none focus:border-indigo-500">
+      <option value="title">제목</option>
+      <option value="singer">가수명</option>
+      <option value="no">번호</option>
+    </select>
+    <input type="text" placeholder="검색어를 입력하세요" v-model="search.searchVal"
+      class="flex-1 mb-2 md:mb-0 md:mr-4 px-3 py-2 rounded-md border-gray-300 focus:outline-none focus:border-indigo-500">
+    <button @click="songSearch" class="flex-shrink-0 px-4 py-2 rounded-md bg-indigo-500 text-white">검색</button>
+  </div>
+  <div v-if="songs.length > 0" class="flex flex-col">
+    <div class="-m-1.5 overflow-x-auto">
+      <div class="p-1.5 min-w-full inline-block align-middle">
+        <div class="overflow-hidden">
+          <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
+            <caption class="py-2 text-start text-sm text-gray-600 dark:text-neutral-500">노래 목록</caption>
+            <thead>
+              <tr>
+                <th scope="col"
+                  class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">번호
+                </th>
+                <th scope="col"
+                  class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">가수명
+                </th>
+                <th scope="col"
+                  class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
+                  제목</th>
+                <th scope="col"
+                  class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">좋아요
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
+              <tr v-for="song in songs" :key="song.no">
+                <td
+                  class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200 text-left">
+                  {{ song.no }}</td>
+                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-left">{{
+                  song.singer }}
+                </td>
+                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-left">{{
+                  song.title }}
+                </td>
+                <td class="px-4 py-4 whitespace-nowrap text-end text-sm font-medium text-left">
+                  <button
+                    class="flex items-center gap-1 bg-gray-200 dark:bg-neutral-800 px-3 py-1 rounded-lg text-sm text-gray-700 dark:text-neutral-300 focus:outline-none hover:bg-gray-300 dark:hover:bg-neutral-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd"
+                        d="M10 18l-1.45-1.33C3.08 11.68 0 8.36 0 5.5 0 2.42 2.42 0 5.5 0c1.68 0 3.25.87 4.5 2.25C10.25 1.87 11.82 1 13.5 1 16.58 1 19 3.42 19 6.5c0 2.86-3.08 6.18-8.55 11.17L10 18z"
+                        clip-rule="evenodd" />
+                    </svg>
+                    <span>Like</span>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-    <ul class="mt-4">
-      <li class="border-b py-2">
-        <h2 class="text-lg font-semibold"></h2>
-        <p class="text-gray-600"></p>
-      </li>
-    </ul>
-    <p class="mt-4">검색 결과가 없습니다.</p>
+  </div>
+  <p v-else class="mt-4">검색 결과가 없습니다.</p>
+
   </div>
 </template>
 
 <script setup>
-import { onMounted, inject } from 'vue';
+import { reactive, inject } from 'vue';
 
-const store = inject('store');
+const axios = inject('$axios');
 
-const search = () => {
-
-};
-
-onMounted(() => {
-  console.log(store);
-  // console.log(store.state.auth.user);
+const search = reactive({
+  brand: 'kumyoung',
+  searchType: 'title',
+  searchVal: '',
+  limit: 1000,
+  offset: 10,
 });
+
+const songs = reactive([]);
+
+const songSearch = async () => {
+
+  if (search.searchVal.trim() == ""){
+    alert("검색어를 입력해주세요");
+    return false;
+  }
+
+  try {
+    const response = await axios.post('/api/songSearch', {
+          brand: search.brand
+        , searchType: search.searchType
+        , searchVal: search.searchVal
+        , limit: search.limit
+        , offset: search.offset
+    });
+    console.log(response)
+    songs.splice(0, songs.length, ...response.data.body.data);
+    
+  } catch (error) {
+    console.error('Error occurred while saving:', error);
+  }
+};
 
 </script>
