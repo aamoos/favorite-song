@@ -20,7 +20,7 @@ onMounted(() => {
 
         localStorage.setItem('accessToken', token);
         localStorage.setItem('refreshToken', refreshToken);
-        router.push("/search");
+        router.push("/release");
     } else {
         window.alert('로그인에 실패하였습니다.')
         router.push("/");

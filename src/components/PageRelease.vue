@@ -1,7 +1,7 @@
 <!-- src/components/PostList.vue -->
 <template>
   <div class="container mx-auto py-4 mb-16 max-h-screen">
-    <h1 class="text-3xl font-semibold text-gray-800 dark:text-white mb-4 text-left">노래찾기</h1>
+    <h1 class="text-3xl font-semibold text-gray-800 dark:text-white mb-4 text-left">인기차트</h1>
     <div class=" flex flex-col md:flex-row mb-4">
       <select v-model="search.brand"
         class="mb-2 md:mb-0 md:mr-4 px-3 py-2 rounded-md border-gray-300 focus:outline-none focus:border-indigo-500">
@@ -16,7 +16,9 @@
         <option value="singer">가수명</option>
         <option value="no">번호</option>
       </select>
-      <input type="text" placeholder="검색어를 입력하세요" v-model="search.searchVal"
+      <input type="month" v-model="search.searchDate"
+        class="mb-2 md:mb-0 md:mr-4 px-3 py-2 rounded-md border-gray-300 focus:outline-none focus:border-indigo-500">
+      <input type="text" placeholder="검색어를 입력하세요" v-model="search.searchDate"
         class="flex-1 mb-2 md:mb-0 md:mr-4 px-3 py-2 rounded-md border-gray-300 focus:outline-none focus:border-indigo-500">
       <button @click="searchSong" class="flex-shrink-0 px-4 py-2 rounded-md bg-indigo-500 text-white">검색</button>
     </div>
@@ -103,10 +105,18 @@ import { reactive, inject } from 'vue';
 const axios = inject('$axios');
 const store = inject('store');
 
+const currentDate = () => {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  return `${year}-${month}`;
+}
+
 const search = reactive({
   brand: 'kumyoung',
   searchType: 'title',
   searchVal: '',
+  searchDate: currentDate(),
   limit: 1000,
   offset: 10,
 });
@@ -116,20 +126,21 @@ const songs = reactive([]);
 //검색버튼
 const searchSong = async () => {
 
-  if (search.searchVal.trim() == ""){
-    alert("검색어를 입력해주세요");
-    return false;
-  }
+  // if (search.searchVal.trim() == ""){
+  //   alert("검색어를 입력해주세요");
+  //   return false;
+  // }
 
   try {
     const response = await axios.post('/api/searchSong', {
           brand: search.brand
         , searchType: search.searchType
         , searchVal: search.searchVal
+        , searchDate: search.searchDate.replaceAll('-', '')
         , limit: search.limit
         , offset: search.offset
         , userId: store.getters.getUser.sub
-        , urlTarget: 'search'
+        , urlTarget: 'release'
     });
     console.log(response)
     songs.splice(0, songs.length, ...response.data.body.data);

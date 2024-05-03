@@ -2,6 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import PageLogin from "@/components/PageLogin.vue";
 import PageJoin from "@/components/PageJoin.vue";
 import PagePasswordFind from "@/components/PagePasswordFind.vue";
+import PageRelease from "@/components/PageRelease.vue";
 import PageSearch from "@/components/PageSearch.vue";
 import PageFavorite from "@/components/PageFavorite.vue";
 
@@ -26,6 +27,12 @@ const routes = [
         name: "PagePasswordFind",
         component: PagePasswordFind,
         meta: { requiresAuth: false },
+    },
+    {
+        path: "/release",
+        name: "PageRelease",
+        component: PageRelease,
+        meta: { requiresAuth: true },
     },
     {
         path: "/search",

@@ -1,6 +1,6 @@
 <!-- src/components/PostList.vue -->
 <template>
-  <div class="container mx-auto py-4 mb-16">
+  <div class="container mx-auto py-4 mb-16 max-h-screen">
     <h1 class="text-3xl font-semibold text-gray-800 dark:text-white mb-4 text-left">즐겨찾기</h1>
     <div class=" flex flex-col md:flex-row mb-4">
       <select v-model="search.brand"
@@ -38,6 +38,15 @@
                     class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
                     제목</th>
                   <th scope="col"
+                    class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
+                    작곡가</th>
+                  <th scope="col"
+                    class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
+                    작사가</th>
+                  <th scope="col"
+                    class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
+                    출시일</th>
+                  <th scope="col"
                     class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">좋아요
                   </th>
                 </tr>
@@ -52,6 +61,15 @@
                   </td>
                   <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-left">{{
                     song.title }}
+                  </td>
+                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-left">{{
+                    song.composer }}
+                  </td>
+                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-left">{{
+                    song.lyricist }}
+                  </td>
+                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-left">{{
+                    song.release }}
                   </td>
                   <td class="px-4 py-4 whitespace-nowrap text-end text-sm font-medium text-left">
                     <button @click="favoriteSong(song)"
