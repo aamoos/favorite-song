@@ -3,6 +3,7 @@ import PageLogin from "@/components/PageLogin.vue";
 import PageJoin from "@/components/PageJoin.vue";
 import PagePasswordFind from "@/components/PagePasswordFind.vue";
 import PageSearch from "@/components/PageSearch.vue";
+import PageFavorite from "@/components/PageFavorite.vue";
 
 //oauth2 redirect
 import PageRedirect from "@/components/PageRedirect.vue";
@@ -30,6 +31,12 @@ const routes = [
         path: "/search",
         name: "PageSearch",
         component: PageSearch,
+        meta: { requiresAuth: true },
+    },
+    {
+        path: "/favorite",
+        name: "PageFavorite",
+        component: PageFavorite,
         meta: { requiresAuth: true },
     },
         //oauth2 redirect page
