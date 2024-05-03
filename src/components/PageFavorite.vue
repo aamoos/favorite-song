@@ -1,6 +1,7 @@
 <!-- src/components/PostList.vue -->
 <template>
   <div class="container mx-auto py-4 mb-16">
+    <h1 class="text-3xl font-semibold text-gray-800 dark:text-white mb-4 text-left">즐겨찾기</h1>
     <div class=" flex flex-col md:flex-row mb-4">
       <select v-model="search.brand"
         class="mb-2 md:mb-0 md:mr-4 px-3 py-2 rounded-md border-gray-300 focus:outline-none focus:border-indigo-500">
@@ -53,11 +54,8 @@
                     song.title }}
                   </td>
                   <td class="px-4 py-4 whitespace-nowrap text-end text-sm font-medium text-left">
-                    <button @click="favoriteSong(song)" :class="{
-                        'text-red-500': song.liked, // Change to your preferred color class when liked
-                        'text-gray-700': !song.liked // Default color class
-                      }"
-                      class="flex items-center gap-1 bg-gray-200 dark:bg-neutral-800 px-3 py-1 rounded-lg text-sm dark:text-neutral-300 focus:outline-none hover:bg-gray-300 dark:hover:bg-neutral-700">
+                    <button @click="favoriteSong(song)"
+                      class="flex text-red-500 items-center gap-1 bg-gray-200 dark:bg-neutral-800 px-3 py-1 rounded-lg text-sm dark:text-neutral-300 focus:outline-none hover:bg-gray-300 dark:hover:bg-neutral-700">
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd"
                           d="M10 18l-1.45-1.33C3.08 11.68 0 8.36 0 5.5 0 2.42 2.42 0 5.5 0c1.68 0 3.25.87 4.5 2.25C10.25 1.87 11.82 1 13.5 1 16.58 1 19 3.42 19 6.5c0 2.86-3.08 6.18-8.55 11.17L10 18z"
@@ -96,12 +94,7 @@ const songs = reactive([]);
 
 //검색버튼
 const searchSong = async () => {
-
-  if (search.searchVal.trim() == ""){
-    alert("검색어를 입력해주세요");
-    return false;
-  }
-
+  
   try {
     const response = await axios.post('/api/searchFavoriteSong', {
           brand: search.brand
@@ -112,7 +105,7 @@ const searchSong = async () => {
         , userId: store.getters.getUser.sub
     });
     console.log(response)
-    songs.splice(0, songs.length, ...response.data.body.data);
+    songs.splice(0, songs.length, ...response.data);
   } catch (error) {
     console.error('Error occurred while saving:', error);
   }
@@ -123,22 +116,15 @@ const favoriteSong = async (song) => {
   
   try {
     const response = await axios.post('/api/favoriteSong', {
-        brand: song.brand
+      brand: search.brand
       , no: song.no
       , singer: song.singer
       , title: song.title
       , userId: store.getters.getUser.sub
     });
     console.log(response)
-
-    if (response.data.body.liked) {
-        alert("즐겨찾기 추가되었습니다.");
-        song.liked = true;
-    }else{
-      alert("즐겨찾기가 삭제되었습니다.")
-      song.liked = false;
-    }
-   
+    alert("즐겨찾기가 삭제되었습니다.")
+    searchSong();
   } catch (error) {
     console.error('Error occurred while saving:', error);
   }

@@ -1,6 +1,7 @@
 <!-- src/components/PostList.vue -->
 <template>
   <div class="container mx-auto py-4 mb-16">
+    <h1 class="text-3xl font-semibold text-gray-800 dark:text-white mb-4 text-left">노래찾기</h1>
     <div class=" flex flex-col md:flex-row mb-4">
       <select v-model="search.brand"
         class="mb-2 md:mb-0 md:mr-4 px-3 py-2 rounded-md border-gray-300 focus:outline-none focus:border-indigo-500">
