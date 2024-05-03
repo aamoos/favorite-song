@@ -49,6 +49,10 @@
                     class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
                     출시일</th>
                   <th scope="col"
+                    class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">유튜브
+                    링크
+                  </th>
+                  <th scope="col"
                     class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">좋아요
                   </th>
                 </tr>
@@ -58,20 +62,24 @@
                   <td
                     class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200 text-left">
                     {{ song.no }}</td>
-                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-left">{{
-                    song.singer }}
+                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-left">
+                    {{song.singer }}
                   </td>
-                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-left">{{
-                    song.title }}
+                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-left">
+                    {{song.title }}
                   </td>
-                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-left">{{
-                    song.composer }}
+                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-left">
+                    {{song.composer }}
                   </td>
-                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-left">{{
-                    song.lyricist }}
+                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-left">
+                    {{song.lyricist }}
                   </td>
-                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-left">{{
-                    song.release }}
+                  <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-left">
+                    {{song.release }}
+                  </td>
+                  <td class="px-4 py-4 whitespace-nowrap text-end text-sm font-medium text-left">
+                    <button @click="searchYoutube(song)"
+                      class="inline-flex items-center gap-1 px-4 py-2 rounded-md bg-red-500 text-white">유튜브</button>
                   </td>
                   <td class="px-4 py-4 whitespace-nowrap text-end text-sm font-medium text-left">
                     <button @click="favoriteSong(song)" :class="{
@@ -177,5 +185,12 @@ const favoriteSong = async (song) => {
     console.error('Error occurred while saving:', error);
   }
 }
+
+//유튜브검색
+const searchYoutube = (song) => {
+  const searchVal = song.singer + " " + song.title;
+  const youtubeLink = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchVal)}`;
+  window.open(youtubeLink, '_blank');
+};
 
 </script>
