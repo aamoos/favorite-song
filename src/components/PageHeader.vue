@@ -4,7 +4,7 @@
       <h1 class="text-white text-1xl font-bold">Favorite Song</h1>
       <nav>
         <ul class="flex space-x-4">
-          <li><a href="javascript:void(0)" @click="release" class="text-white">인기차트</a></li>
+          <li><a href="javascript:void(0)" @click="release" class="text-white">출시일검색</a></li>
           <li><a href="javascript:void(0)" @click="search" class="text-white">노래찾기</a></li>
           <li><a href="javascript:void(0)" @click="favorite" class="text-white">즐겨찾기</a></li>
           <li><a href="javascript:void(0)" @click="logout" class="text-white">로그아웃</a></li>

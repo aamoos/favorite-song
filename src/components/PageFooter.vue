@@ -1,7 +1,7 @@
 <template>
-  <footer v-if="showFooter" class="fixed bottom-0 w-full bg-blue-500 p-4">
-    <div class="container mx-auto text-center text-white">
-      <p>© Copyright Kim Jae Sung.</p>
+  <footer v-if="showFooter" class="parent-container relative pb-16">
+    <div class=" container mx-auto text-center text-white">
+    <p>© Copyright Kim Jae Sung.</p>
     </div>
   </footer>
 </template>

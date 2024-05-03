@@ -16,7 +16,7 @@
         <option value="singer">가수명</option>
         <option value="no">번호</option>
       </select>
-      <input type="text" placeholder="검색어를 입력하세요" v-model="search.searchVal"
+      <input type="text" placeholder="검색어를 입력하세요" v-model="search.searchVal" @keyup.enter="handleEnterKeyPress"
         class="flex-1 mb-2 md:mb-0 md:mr-4 px-3 py-2 rounded-md border-gray-300 focus:outline-none focus:border-indigo-500">
       <button @click="searchSong" class="flex-shrink-0 px-4 py-2 rounded-md bg-indigo-500 text-white">검색</button>
     </div>
@@ -106,7 +106,7 @@
 </template>
 
 <script setup>
-import { reactive, inject } from 'vue';
+import { reactive, inject, ref } from 'vue';
 
 const axios = inject('$axios');
 const store = inject('store');
@@ -115,14 +115,18 @@ const search = reactive({
   brand: 'kumyoung',
   searchType: 'title',
   searchVal: '',
-  limit: 1000,
-  offset: 10,
+  limit: 50,
+  offset: 0,
 });
 
 const songs = reactive([]);
+const loading = ref(false);
 
 //검색버튼
 const searchSong = async () => {
+
+  if (loading.value) return; // 이미 데이터를 불러오고 있는 경우 중복 호출 방지
+  loading.value = true; // 데이터를 불러오는 중이라고 플래그 설정
 
   if (search.searchVal.trim() == ""){
     alert("검색어를 입력해주세요");
@@ -143,6 +147,8 @@ const searchSong = async () => {
     songs.splice(0, songs.length, ...response.data.body.data);
   } catch (error) {
     console.error('Error occurred while saving:', error);
+  } finally {
+    loading.value = false; // 데이터 로딩 완료 후 플래그 해제
   }
 };
 
@@ -181,5 +187,27 @@ const searchYoutube = (song) => {
   const youtubeLink = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchVal)}`;
   window.open(youtubeLink, '_blank');
 };
+
+//enter이벤트
+const handleEnterKeyPress = (event) => {
+  if (event.key === 'Enter') {
+    searchSong();
+  }
+};
+
+// 추가로 불러올 데이터가 있는지 확인하고, 있다면 검색 함수 호출
+const checkAndLoadMoreData = () => {
+  const scrollPosition = window.innerHeight + window.scrollY;
+  const documentHeight = document.documentElement.offsetHeight;
+  if (scrollPosition >= documentHeight) {
+    console.log("스크롤맨밑");
+    // 변경된 부분: 오프셋을 증가시키고 검색 함수 호출
+    search.limit += 10;
+    searchSong();
+  }
+};
+
+// 페이지 로드 시 스크롤 이벤트 리스너 추가
+window.addEventListener('scroll', checkAndLoadMoreData);
 
 </script>
