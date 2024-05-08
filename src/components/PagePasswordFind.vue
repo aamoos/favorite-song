@@ -171,7 +171,7 @@ const goJoinPage = () => {
 onMounted(() => {
   const access_token = localStorage.getItem('accessToken');
   if (access_token != null) {
-    router.push("/release");
+    router.push("/search");
   }
 });
 

@@ -71,7 +71,7 @@ const login = async () => {
       password : user.password
     });
     // Redirect to home page after login
-    router.push("/release");
+    router.push("/search");
   } catch (error) {
     console.log(error.response);
     alert(error.response.data.message);
@@ -98,7 +98,7 @@ const passwordFind = () => {
 onMounted(() => {
   const access_token = localStorage.getItem('accessToken');
   if (access_token != null) {
-    router.push("/release");
+    router.push("/search");
   }
 });
 
