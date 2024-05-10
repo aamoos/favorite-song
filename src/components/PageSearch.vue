@@ -2,24 +2,7 @@
 <template>
   <div class="container mx-auto py-4 mb-16 max-h-screen">
     <h1 class="text-3xl font-semibold text-gray-800 dark:text-white mb-4 text-left">노래찾기</h1>
-    <div class=" flex flex-col md:flex-row mb-4">
-      <select v-model="search.brand"
-        class="mb-2 md:mb-0 md:mr-4 px-3 py-2 rounded-md border-gray-300 focus:outline-none focus:border-indigo-500">
-        <option value="kumyoung">kumyoung</option>
-        <option value="tj">tj</option>
-        <option value="dam">dam</option>
-        <option value="joysound">joysound</option>
-      </select>
-      <select v-model="search.searchType"
-        class="mb-2 md:mb-0 md:mr-4 px-3 py-2 rounded-md border-gray-300 focus:outline-none focus:border-indigo-500">
-        <option value="title">제목</option>
-        <option value="singer">가수명</option>
-        <option value="no">번호</option>
-      </select>
-      <input type="text" placeholder="검색어를 입력하세요" v-model="search.searchVal" @keyup.enter="handleEnterKeyPress"
-        class="flex-1 mb-2 md:mb-0 md:mr-4 px-3 py-2 rounded-md border-gray-300 focus:outline-none focus:border-indigo-500">
-      <button @click="searchSong" class="flex-shrink-0 px-4 py-2 rounded-md bg-indigo-500 text-white">검색</button>
-    </div>
+    <SearchComponent :search="search" @searchSong="searchSong" />
     
     <div v-if="songs.length > 0" class="flex flex-col">
       <div class="-m-1.5 overflow-x-auto">
@@ -108,6 +91,7 @@
 
 <script setup>
 import { reactive, inject, ref } from 'vue';
+import SearchComponent from '@/components/SearchComponent.vue';
 
 const axios = inject('$axios');
 const store = inject('store');
@@ -129,10 +113,10 @@ const searchSong = async () => {
   if (loading.value) return; // 이미 데이터를 불러오고 있는 경우 중복 호출 방지
   loading.value = true; // 데이터를 불러오는 중이라고 플래그 설정
 
-  if (search.searchVal.trim() == ""){
-    alert("검색어를 입력해주세요");
-    return false;
-  }
+  // if (search.searchVal.trim() == ""){
+  //   alert("검색어를 입력해주세요");
+  //   return false;
+  // }
 
   try {
     const response = await axios.post('/api/searchSong', {
@@ -187,13 +171,6 @@ const searchYoutube = (song) => {
   const searchVal = song.singer + " " + song.title;
   const youtubeLink = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchVal)}`;
   window.open(youtubeLink, '_blank');
-};
-
-//enter이벤트
-const handleEnterKeyPress = (event) => {
-  if (event.key === 'Enter') {
-    searchSong();
-  }
 };
 
 // 추가로 불러올 데이터가 있는지 확인하고, 있다면 검색 함수 호출

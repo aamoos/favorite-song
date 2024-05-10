@@ -1,7 +1,7 @@
 <template>
   <header v-if="showHeader" class="bg-blue-500 p-4">
     <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-white text-1xl font-bold">Favorite Song</h1>
+      <h1 class="text-white text-1xl font-bold"><a href="javascript:void(0)" @click="search" class="text-white">Favorite Song</a></h1>
       <nav>
         <ul class="flex space-x-4">
           <li><a href="javascript:void(0)" @click="release" class="text-white">출시일검색</a></li>

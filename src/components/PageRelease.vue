@@ -2,26 +2,7 @@
 <template>
   <div class="container mx-auto py-4 mb-16 max-h-screen">
     <h1 class="text-3xl font-semibold text-gray-800 dark:text-white mb-4 text-left">출시일검색</h1>
-    <div class=" flex flex-col md:flex-row mb-4">
-      <select v-model="search.brand"
-        class="mb-2 md:mb-0 md:mr-4 px-3 py-2 rounded-md border-gray-300 focus:outline-none focus:border-indigo-500">
-        <option value="kumyoung">kumyoung</option>
-        <option value="tj">tj</option>
-        <option value="dam">dam</option>
-        <option value="joysound">joysound</option>
-      </select>
-      <select v-model="search.searchType"
-        class="mb-2 md:mb-0 md:mr-4 px-3 py-2 rounded-md border-gray-300 focus:outline-none focus:border-indigo-500">
-        <option value="title">제목</option>
-        <option value="singer">가수명</option>
-        <option value="no">번호</option>
-      </select>
-      <input type="month" v-model="search.searchDate"
-        class="mb-2 md:mb-0 md:mr-4 px-3 py-2 rounded-md border-gray-300 focus:outline-none focus:border-indigo-500">
-      <input type="text" placeholder="검색어를 입력하세요" v-model="search.searchDate"
-        class="flex-1 mb-2 md:mb-0 md:mr-4 px-3 py-2 rounded-md border-gray-300 focus:outline-none focus:border-indigo-500">
-      <button @click="searchSong" class="flex-shrink-0 px-4 py-2 rounded-md bg-indigo-500 text-white">검색</button>
-    </div>
+    <SearchComponent :search="search" @searchSong="searchSong" />
     <div v-if="songs.length > 0" class="flex flex-col">
       <div class="-m-1.5 overflow-x-auto">
         <div class="p-1.5 min-w-full inline-block align-middle">
@@ -109,6 +90,7 @@
 
 <script setup>
 import { reactive, inject, ref } from 'vue';
+import SearchComponent from '@/components/SearchComponent.vue';
 
 const axios = inject('$axios');
 const store = inject('store');
@@ -127,6 +109,7 @@ const search = reactive({
   searchDate: currentDate(),
   limit: 50,
   offset: 0,
+  searchDateShow: true,
 });
 
 const songs = reactive([]);
