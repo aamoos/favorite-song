@@ -55,7 +55,6 @@ instance.interceptors.response.use(
     const originalRequest = error.config
     console.log(error);
     const currentURL = window.location.pathname;
-
     //login 페이지에서는 refresh token 호출안되게 처리
     if(currentURL != "/" && currentURL != "/join" && currentURL != "/passwordFind"){
       if(error.response.status === 401 && !originalRequest._retry) {
