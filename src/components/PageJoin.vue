@@ -80,6 +80,11 @@
         <div class="mt-2">
           <input id="email" name="email" type="email" autocomplete="email" required="" v-model="user.checkCode"
             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          <div class="input-errors text-red-500" v-for="error in c$.checkCode.$silentErrors" :key="error.$ccode">
+            <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+              <span class="font-medium"></span>{{ error.$message }}
+            </p>
+          </div>
         </div>
       </div>
       <div class="mt-4">
@@ -122,7 +127,12 @@ const rules = {
   userName: { required: helpers.withMessage('이름을 입력해주세요.', required) },
 }
 
+const checkCodeRules = {
+  checkCode: { required: helpers.withMessage('인증번호를 입력해주세요.', required) },
+}
+
 const v$ = useVuelidate(rules, user);
+const c$ = useVuelidate(checkCodeRules, user);
 
 const timerActive = ref(false);
 const time = ref(300);
@@ -142,6 +152,13 @@ const goLoginPage = () => {
 
 //회원가입 버튼 클릭
 const signupCheck = async () => {
+
+  await v$.value.$touch();
+
+  if (v$.value.$invalid) {
+    return;
+  }
+
   try {
     const response = await axios.post('/auth/signupCheck', {
       userId: user.userId
@@ -155,16 +172,7 @@ const signupCheck = async () => {
       toggleTimer();
     }
   } catch (error) {
-    if (user.userId == ''){
-      alert(error.response.data.userId);
-    }else if(user.password == ''){
-      alert(error.response.data.password);
-    } else if (user.password2 == '') {
-      alert(error.response.data.password);
-    } else if (user.userName == '') {
-      alert(error.response.data.userName);
-    }
-    
+    alert(error.response.data.message)
     console.error('Error occurred while saving:', error);
   }
 };
@@ -186,6 +194,13 @@ const sendEmail = async (type) => {
 
 //인증코드 체크후 맞으면 회원가입처리
 const join = async () => {
+
+  await c$.value.$touch();
+
+  if (c$.value.$invalid) {
+    return;
+  }
+
   try {
     const response = await axios.post('/auth/signup', {
        userId: user.userId
