@@ -9,6 +9,11 @@
         <div class="mt-2">
           <input id="email" name="email" type="email" autocomplete="email" required="" v-model="user.userId"
             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+          <div class="input-errors text-red-500" v-for="error in v$.userId.$silentErrors" :key="error.$uid">
+            <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+              <span class="font-medium"></span>{{ error.$message }}
+            </p>
+          </div>
         </div>
       </div>
 
@@ -18,6 +23,11 @@
           <input id="password" name="password" type="password" autocomplete="password" required=""
             v-model="user.password"
             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+          <div class="input-errors text-red-500" v-for="error in v$.password.$silentErrors" :key="error.$password">
+            <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+              <span class="font-medium"></span>{{ error.$message }}
+            </p>
+          </div>
         </div>
       </div>
 
@@ -27,6 +37,11 @@
           <input id="password2" name="password2" type="password" autocomplete="password" required=""
             v-model="user.password2"
             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+          <div class="input-errors text-red-500" v-for="error in v$.password2.$silentErrors" :key="error.$password2">
+            <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+              <span class="font-medium"></span>{{ error.$message }}
+            </p>
+          </div>
         </div>
       </div>
 
@@ -36,6 +51,11 @@
           <input id="usnerName" name="usnerName" type="text" autocomplete="usnerName" required="" maxlength="10"
             v-model="user.userName"
             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+          <div class="input-errors text-red-500" v-for="error in v$.userName.$silentErrors" :key="error.$uname">
+            <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+              <span class="font-medium"></span>{{ error.$message }}
+            </p>
+          </div>
         </div>
       </div>
 
@@ -78,6 +98,9 @@
 
 <script setup>
 import { ref, reactive, inject, onMounted, computed } from 'vue';
+import { useVuelidate } from '@vuelidate/core'
+import { helpers, required, email } from "@vuelidate/validators";
+
 const router = inject('router');
 const axios = inject('$axios');
 
@@ -88,6 +111,18 @@ const user = reactive({
   userName: '',
   checkCode : ''
 });
+
+const rules = {
+  userId: {
+    required: helpers.withMessage('이메일을 입력해주세요.', required),
+    email: helpers.withMessage('올바른 이메일을 입력해주세요.', email)
+  },
+  password: { required: helpers.withMessage('패스워드를 입력해주세요.', required) },
+  password2: { required: helpers.withMessage('패스워드 확인을 입력해주세요.', required) },
+  userName: { required: helpers.withMessage('이름을 입력해주세요.', required) },
+}
+
+const v$ = useVuelidate(rules, user);
 
 const timerActive = ref(false);
 const time = ref(300);
@@ -120,7 +155,16 @@ const signupCheck = async () => {
       toggleTimer();
     }
   } catch (error) {
-    alert(error.response.data.message);
+    if (user.userId == ''){
+      alert(error.response.data.userId);
+    }else if(user.password == ''){
+      alert(error.response.data.password);
+    } else if (user.password2 == '') {
+      alert(error.response.data.password);
+    } else if (user.userName == '') {
+      alert(error.response.data.userName);
+    }
+    
     console.error('Error occurred while saving:', error);
   }
 };
