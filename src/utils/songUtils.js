@@ -10,7 +10,7 @@ export const favoriteSong = async (song, axios, store) => {
         userId: store.getters.getUser.sub,
         composer: song.composer,
         lyricist: song.lyricist,
-        release: song.release
+        releaseDate: song.release
     });
     console.log(response);
 
