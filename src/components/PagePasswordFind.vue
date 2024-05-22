@@ -9,6 +9,11 @@
         <div class="mt-2">
           <input id="email" name="email" type="email" autocomplete="email" required="" v-model="user.userId"
             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+          <div class="input-errors text-red-500" v-for="error in v$.userId.$silentErrors" :key="error.$uid">
+            <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+              <span class="font-medium"></span>{{ error.$message }}
+            </p>
+          </div>
         </div>
       </div>
 
@@ -18,6 +23,11 @@
           <input id="usnerName" name="usnerName" type="text" autocomplete="usnerName" required="" maxlength="10"
             v-model="user.userName"
             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+          <div class="input-errors text-red-500" v-for="error in v$.userName.$silentErrors" :key="error.$uname">
+            <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+              <span class="font-medium"></span>{{ error.$message }}
+            </p>
+          </div>
         </div>
       </div>
 
@@ -43,6 +53,11 @@
         <div class="mt-2">
           <input id="email" name="email" type="email" autocomplete="email" required="" v-model="user.checkCode"
             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          <div class="input-errors text-red-500" v-for="error in c$.checkCode.$silentErrors" :key="error.$ccode">
+            <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+              <span class="font-medium"></span>{{ error.$message }}
+            </p>
+          </div>
         </div>
       </div>
       <div class="mt-4">
@@ -61,6 +76,9 @@
 
 <script setup>
 import { ref, reactive, inject, onMounted, computed } from 'vue';
+import { useVuelidate } from '@vuelidate/core'
+import { helpers, required, email } from "@vuelidate/validators";
+
 const router = inject('router');
 const axios = inject('$axios');
 
@@ -69,6 +87,21 @@ const user = reactive({
   userName: '',
   checkCode : ''
 });
+
+const rules = {
+  userId: {
+    required: helpers.withMessage('이메일을 입력해주세요.', required),
+    email: helpers.withMessage('올바른 이메일을 입력해주세요.', email)
+  },
+  userName: { required: helpers.withMessage('이름을 입력해주세요.', required) },
+}
+
+const checkCodeRules = {
+  checkCode: { required: helpers.withMessage('인증번호를 입력해주세요.', required) },
+}
+
+const v$ = useVuelidate(rules, user);
+const c$ = useVuelidate(checkCodeRules, user);
 
 const timerActive = ref(false);
 const time = ref(300);
@@ -88,6 +121,13 @@ const goLoginPage = () => {
 
 //비밀번호 찾기 버튼 클릭
 const passwordFindCheck = async () => {
+
+  await v$.value.$touch();
+
+  if (v$.value.$invalid) {
+    return;
+  }
+
   try {
     const response = await axios.post('/auth/passwordFindCheck', {
        userId: user.userId
@@ -124,6 +164,13 @@ const sendEmail = async (type) => {
 
 //인증코드 체크후 맞으면 패스워드 변경처리
 const passwordFind = async () => {
+
+  await c$.value.$touch();
+
+  if (c$.value.$invalid) {
+    return;
+  }
+
   try {
     const response = await axios.post('/auth/passwordFind', {
        userId: user.userId
