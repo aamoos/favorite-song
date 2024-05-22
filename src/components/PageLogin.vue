@@ -44,7 +44,19 @@
 
       <div class="mt-4">
         <button @click="socialLogin('google')"
-          class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">구글
+          class="flex w-full justify-center rounded-md bg-[#4285F4] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#357AE8] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4285F4]">구글
+          로그인</button>
+      </div>
+
+      <div class="mt-4">
+        <button @click="socialLogin('naver')"
+          class="flex w-full justify-center rounded-md bg-[#03C75A] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#02B34D] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#03C75A]">네이버
+          로그인</button>
+      </div>
+
+      <div class="mt-4">
+        <button @click="socialLogin('kakao')"
+          class="flex w-full justify-center rounded-md bg-[#FFCD00] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#E6B800] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFCD00]">카카오
           로그인</button>
       </div>
       <!-- </form> -->
