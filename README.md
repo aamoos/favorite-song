@@ -33,8 +33,21 @@
 ![image](https://github.com/aamoos/favorite-song/assets/37327676/ecd51847-e2c0-4e7e-94e7-167ed16be83e)
 - 5분안에 입력을 해야하며 메일로 발송된 인증번호를 맞게 입력해야 회원가입이 진행됩니다.
 
-## 메일
+## 인증번호 메일
 ![image](https://github.com/aamoos/favorite-song/assets/37327676/2a3612ea-c8a5-4459-92ea-0c92ba0d4109)
+
+## 패스워드 찾기
+![image](https://github.com/aamoos/favorite-song/assets/37327676/5d8886bc-2474-4a42-9b30-56a15782738e)
+- 회원기입한 이메일, 사용자이름을 작성해서 비밀번호 찾기 클릭시, 인증번호창이 나옵니다.
+
+## 패스워드 찾기 인증번호 창
+![image](https://github.com/aamoos/favorite-song/assets/37327676/bef88445-fff0-4ba0-ac04-34b9b92df150)
+- 메일로 발송된 인증번호를 올바르게 입력하면 임시비밀번호가 메일로 발송되고 변경이 됩니다.
+
+## 임시 비밀번호 메일
+![image](https://github.com/aamoos/favorite-song/assets/37327676/df820a72-a290-42c9-bfb8-dd0861685dc5)
+
+
 
 
 
