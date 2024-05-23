@@ -15,6 +15,10 @@
 - router
 - vuelidate
 
+# openApi karaoke
+- https://api.manana.kr/v2/karaoke/search.json
+- https://api.manana.kr/v2/karaoke/release.json
+
 # frontend repository url
 - https://github.com/aamoos/favorite-song.git
 # backend repository url
