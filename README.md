@@ -29,6 +29,12 @@
 ![image](https://github.com/aamoos/favorite-song/assets/37327676/aaf1c30d-3dd3-4b32-b356-853b0cfcee07)
 - vuelidate를 사용해서 validation 처리를 하였으며, 정상적으로 회원가입시 메일로 인증번호가 발송이 됩니다.
 
+## 인증번호 입력창
+![image](https://github.com/aamoos/favorite-song/assets/37327676/ecd51847-e2c0-4e7e-94e7-167ed16be83e)
+- 5분안에 입력을 해야하며 메일로 발송된 인증번호를 맞게 입력해야 회원가입이 진행됩니다.
+
+## 메일
+![image](https://github.com/aamoos/favorite-song/assets/37327676/2a3612ea-c8a5-4459-92ea-0c92ba0d4109)
 
 
 
