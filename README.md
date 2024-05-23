@@ -6,6 +6,7 @@
 # 개발환경
 - vue3
 - tailwind css
+- vsCode
 
 # 사용기술
 - vuex
@@ -15,10 +16,9 @@
 - vuelidate
 
 # frontend repository url
-- https://github.com/aamoos/hellzzang_frontend
-
+- https://github.com/aamoos/favorite-song.git
 # backend repository url
-- https://github.com/aamoos/hellzzang_backend
+- https://github.com/aamoos/favoriteSongBackend.git
 
 
 
