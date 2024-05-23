@@ -47,8 +47,21 @@
 ## 임시 비밀번호 메일
 ![image](https://github.com/aamoos/favorite-song/assets/37327676/df820a72-a290-42c9-bfb8-dd0861685dc5)
 
+## 출시일 검색
+![image](https://github.com/aamoos/favorite-song/assets/37327676/a559b5df-dc1a-42c6-baca-24fa8c29cd5a)
+- 출시일을 조건으로 검색시 해당 YYYYMM에 발표한 곡들이 조회가 됩니다.
 
+## 노래찾기
+![image](https://github.com/aamoos/favorite-song/assets/37327676/182aa8ac-74e9-41ca-92ea-db12cc261f65)
+- 금영, tj, dam, joysound를 대상으로 제목, 가수명, 곡번호를 조회조건으로 해당하는 노래를 검색할수 있습니다.
 
+## 즐겨찾기
+![image](https://github.com/aamoos/favorite-song/assets/37327676/700d1e62-97ca-476d-9f1a-00000f518cd2)
+- 출시일 검색, 노래찾기에서 검색한 항목을 즐겨찾기한 항목들을 볼수있습니다.
+
+## 공통 기능
+- 유튜브 버튼 클릭시 해당 곡을 유튜브에 검색해서 창이 열립니다.
+- Like 버튼 클릭시 즐겨찾기 메뉴에서 볼수 있습니다.
 
 
 
