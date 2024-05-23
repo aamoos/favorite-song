@@ -20,6 +20,10 @@
 # backend repository url
 - https://github.com/aamoos/favoriteSongBackend.git
 
+# 화면
+## 로그인
+![image](https://github.com/aamoos/favorite-song/assets/37327676/a23031dd-53ee-45ba-94e8-f9b681b9af67)
+- 소셜로그인, 로그인이 가능하게 구현하였습니다.
 
 
 
