@@ -62,8 +62,7 @@
 
       <div class="mt-4">
         <button @click="test()"
-          class="flex w-full justify-center rounded-md bg-[#FFCD00] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#E6B800] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFCD00]">카카오
-          테스트</button>
+          class="flex w-full justify-center rounded-md bg-[#FFCD00] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#E6B800] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFCD00]">테스트</button>
       </div>
       <!-- </form> -->
     </div>
