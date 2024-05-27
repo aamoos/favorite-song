@@ -1,14 +1,18 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
-  devServer: {
-    port: 8080,
+   devServer: {
+    port : 8080,
+    // proxy : process.env.VUE_APP_BACKEND_URL
     proxy: {
-      '/api': {
+      '/api': { 
         target: process.env.VUE_APP_BACKEND_URL,
         changeOrigin: true,
-        secure: false // Disable certificate verification for self-signed certificates
+      },
+      '/auth': {
+        target: process.env.VUE_APP_BACKEND_URL,
+        changeOrigin: true,
       }
     }
   },
   transpileDependencies: true
-});
+})
