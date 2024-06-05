@@ -15,7 +15,7 @@
     </select>
     <input v-if="search.searchDateShow" type="month" v-model="search.searchDate"
       class="mb-2 md:mb-0 md:mr-4 px-3 py-2 rounded-md border-gray-300 focus:outline-none focus:border-indigo-500">
-    <input @keydown.enter="handleEnterKeyPress" type="text" placeholder="검색어를 입력하세요" v-model="search.searchVal"
+    <input v-if="search.searchInputShow" @keydown.enter="handleEnterKeyPress" type="text" placeholder="검색어를 입력하세요" v-model="search.searchVal"
       class="flex-1 mb-2 md:mb-0 md:mr-4 px-3 py-2 rounded-md border-gray-300 focus:outline-none focus:border-indigo-500">
     <button @click="handleSearch" class="flex-shrink-0 px-4 py-2 rounded-md bg-indigo-500 text-white">검색</button>
   </div>

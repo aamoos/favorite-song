@@ -31,6 +31,7 @@ const search = reactive({
   limit: 50,
   offset: 0,
   searchDateShow: true,
+  searchInputShow: false,
 });
 
 const songs = reactive([]);
