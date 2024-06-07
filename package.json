@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "serve:local": "vue-cli-service serve --mode local --port 3000",
     "build": "vue-cli-service build",
-    "build:live": "vue-cli-service build --mode live",
+    "build:live": "vue-cli-service build --mode live --port 3000",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
