@@ -5,7 +5,8 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build:live
-RUN npm run serve:live
+EXPOSE 3000
+CMD ["npm", "run", "serve"]
 
 # production stage
 #FROM nginx:stable-alpine as production-stage

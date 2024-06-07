@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve:live": "vue-cli-service serve --mode live --port 3000",
+    "serve": "vue-cli-service serve --mode live --port 3000",
     "serve:local": "vue-cli-service serve --mode local --port 3000",
     "build": "vue-cli-service build",
     "build:live": "vue-cli-service build --mode live --port 3000",
