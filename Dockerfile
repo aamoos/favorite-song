@@ -5,7 +5,7 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build:live
-EXPOSE 3000
+EXPOSE 80
 CMD ["npm", "run", "serve"]
 
 # production stage
