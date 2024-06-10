@@ -13,7 +13,7 @@ const jwtDecode = inject('jwtDecode');
 onMounted(() => {
     const token = router.currentRoute.value.query.token
     const refreshToken = router.currentRoute.value.query.refreshToken
-
+    alert(token);
     if (token) {
         store.commit('setToken', token);
         store.commit('setUser', jwtDecode.decode(token));
