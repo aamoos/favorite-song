@@ -71,7 +71,9 @@
 
 <script setup>
 import { inject, reactive, onMounted } from 'vue';
- 
+
+const jwtDecode = inject('jwtDecode'); 
+
 const router = inject('router');
 const store = inject('store');
 
@@ -117,10 +119,26 @@ const passwordFind = () => {
   router.push("/passwordFind");
 }
 
+// onMounted(() => {
+//   const access_token = localStorage.getItem('accessToken');
+//   if (access_token != null) {
+//     router.push("/search");
+//   }
+// });
+
 onMounted(() => {
-  const access_token = localStorage.getItem('accessToken');
-  if (access_token != null) {
+  const token = router.currentRoute.value.query.token
+  const refreshToken = router.currentRoute.value.query.refreshToken
+  alert(token);
+  if (token) {
+    store.commit('setToken', token);
+    store.commit('setUser', jwtDecode.decode(token));
+
+    localStorage.setItem('accessToken', token);
+    localStorage.setItem('refreshToken', refreshToken);
     router.push("/search");
+  } else {
+    router.push("/");
   }
 });
 

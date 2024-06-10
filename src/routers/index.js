@@ -7,7 +7,7 @@ import PageSearch from "@/components/PageSearch.vue";
 import PageFavorite from "@/components/PageFavorite.vue";
 
 //oauth2 redirect
-import PageRedirect from "@/components/PageRedirect.vue";
+//import PageRedirect from "@/components/PageRedirect.vue";
 
 const routes = [
     {
@@ -49,7 +49,7 @@ const routes = [
         //oauth2 redirect page
     {
         path: '/oauth2/redirect'
-      , component: PageRedirect}
+      , component: PageLogin}
 ];
 
 const router = createRouter({
