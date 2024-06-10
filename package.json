@@ -5,8 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve --mode live --port 80",
     "serve:local": "vue-cli-service serve --mode local --port 3000",
-    "build": "vue-cli-service build",
-    "build:live": "vue-cli-service build --mode live --port 3000",
+    "build": "vue-cli-service build --mode local --port 3000",
+    "build:live": "vue-cli-service build --mode live --port 80",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
