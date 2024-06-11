@@ -4,11 +4,12 @@ FROM node:lts-alpine as build-stage
 # Install Vue CLI
 RUN npm install -g @vue/cli
 
-WORKDIR /home/ubuntu/app/frontend
+#WORKDIR /home/ubuntu/app/frontend
 
-COPY package*.json ./
+#COPY package*.json ./
+RUN npm cache clean --force
 RUN npm install
-COPY . .
+#COPY . .
 RUN npm run build:live
 
 # production stage
