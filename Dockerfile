@@ -11,7 +11,7 @@ COPY . .
 RUN npm install
 
 # 애플리케이션을 빌드합니다.
-RUN npm run build
+RUN npm run build:live
 
 # Nginx로 서빙할 정적 파일을 설정합니다.
 FROM nginx:alpine
