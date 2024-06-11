@@ -1,8 +1,12 @@
 # build stage
 FROM node:lts-alpine as build-stage
+
+# Install Vue CLI
+RUN npm install -g @vue/cli
+
 WORKDIR .
 COPY package*.json ./
-RUN npm install
+RUN sudo npm install
 COPY . .
 RUN npm run build:live
 
