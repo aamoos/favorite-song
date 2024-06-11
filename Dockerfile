@@ -6,7 +6,7 @@ RUN npm install -g @vue/cli
 
 WORKDIR .
 COPY package*.json ./
-RUN sudo npm install
+RUN npm install
 COPY . .
 RUN npm run build:live
 
