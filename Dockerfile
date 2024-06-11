@@ -4,14 +4,23 @@ FROM node:lts-alpine as build-stage
 # Install Vue CLI
 RUN npm install -g @vue/cli
 
-#WORKDIR /home/ubuntu/app/frontend
+# Set working directory
+WORKDIR /app/frontend
 
-#COPY package*.json ./
-RUN npm cache clean --force
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install dependencies
 RUN npm install
-#COPY . .
+
+# Copy the rest of the application
+COPY . .
+
+# Build the Vue.js application
 RUN npm run build:live
 
 # production stage
 FROM nginx:stable-alpine as production-stage
-COPY --from=build-stage /home/ubuntu/app/frontend/dist /usr/share/nginx/html
+
+# Copy built files from build stage to Nginx
+COPY --from=build-stage /app/frontend/dist /usr/share/nginx/html
