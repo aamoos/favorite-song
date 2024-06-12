@@ -4,10 +4,10 @@
   "private": true,
   "homepage": ".",
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --mode live",
     "serve:local": "vue-cli-service serve --mode local --port 3000",
     "build:local": "vue-cli-service build --mode local --port 3000",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --mode live",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
