@@ -11,8 +11,8 @@ COPY . .
 RUN npm install
 
 # 애플리케이션을 빌드합니다.
-RUN npm run build:live
+RUN npm run build
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "serve"]
