@@ -8,6 +8,10 @@
 - tailwind css
 - vsCode
 
+# 네트워크 구성도
+![image](https://github.com/aamoos/favorite-song/assets/37327676/031f95f5-2e69-4899-a959-051d0378abdf)
+
+
 # 서버정보
 - ec2
 - Route 53
