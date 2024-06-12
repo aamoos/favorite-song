@@ -2,6 +2,7 @@
   "name": "favorite-song",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "scripts": {
     "serve": "vue-cli-service serve --mode live --port 80",
     "serve:local": "vue-cli-service serve --mode local --port 3000",
