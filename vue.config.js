@@ -1,6 +1,7 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
-   devServer: {
+  devServer: {
+    https: true, // HTTPS 사용
     port : process.env.VUE_APP_PORT,
     proxy : process.env.VUE_APP_BACKEND_URL,
     allowedHosts: "all"
