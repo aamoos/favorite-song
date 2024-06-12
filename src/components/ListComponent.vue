@@ -38,21 +38,21 @@
             <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
               <tr v-for="song in songs" :key="song.no">
                 <td
-                  class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200 text-left">
+                  class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-500 text-left">
                   {{ song.no }}</td>
-                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-left">
+                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-500 text-left">
                   {{ song.singer }}
                 </td>
-                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-left">
+                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-500 text-left">
                   {{ song.title }}
                 </td>
-                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-left">
+                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-500 text-left">
                   {{ song.composer }}
                 </td>
-                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-left">
+                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-500 text-left">
                   {{ song.lyricist }}
                 </td>
-                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 text-left">
+                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-500 text-left">
                   {{ song.release }}
                 </td>
                 <td class="px-2 py-4 whitespace-nowrap text-left text-sm font-medium flex text-left">
