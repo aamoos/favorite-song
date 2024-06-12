@@ -6,5 +6,5 @@ module.exports = defineConfig({
     allowedHosts: "all"
   },
   transpileDependencies: true,
-  outputDir: '/home/ubuntu/app/frontend'  // 빌드 결과물 저장 경로
+  outputDir: 'dist'  // 빌드 결과물 저장 경로
 })
