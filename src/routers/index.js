@@ -49,7 +49,10 @@ const routes = [
         //oauth2 redirect page
     {
         path: '/oauth2/redirect'
-      , component: PageLogin}
+      , name: "Oauth2Redirect"
+      , component: PageLogin
+      , meta: { requiresAuth: false },
+    }
 ];
 
 const router = createRouter({
