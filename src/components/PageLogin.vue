@@ -105,7 +105,7 @@ const login = async () => {
 
 //소셜로그인
 const socialLogin = (target) => {
-  window.location.href = process.env.VUE_APP_BACKEND_URL + '/api/oauth2/authorize/' + target + '?redirect_uri=' + process.env.VUE_APP_FRONTEND_URL + '/oauth2/redirect';
+  window.location.href = process.env.VUE_APP_BACKEND_URL + '/oauth2/authorize/' + target + '?redirect_uri=' + process.env.VUE_APP_FRONTEND_URL + '/oauth2/redirect';
 };
 
 
