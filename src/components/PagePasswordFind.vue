@@ -81,6 +81,8 @@ import { helpers, required, email } from "@vuelidate/validators";
 
 const router = inject('router');
 const axios = inject('$axios');
+const showErrorAlert = inject('showErrorAlert');
+const showSuccessAlert = inject('showSuccessAlert');
 
 const user = reactive({
   userId: '',
@@ -142,7 +144,7 @@ const passwordFindCheck = async () => {
       toggleTimer();
     }
   } catch (error) {
-    alert(error.response.data.message);
+    showErrorAlert(error.response.data.message);
     console.error('Error occurred while saving:', error);
   }
 };
@@ -178,14 +180,12 @@ const passwordFind = async () => {
     });
 
     if(response.data.statusCode == "OK"){
-      alert("변경된 임시 비밀번호를 메일로 전송하였습니다.");
+      showSuccessAlert("변경된 임시 비밀번호를 메일로 전송하였습니다.");
       router.push("/");
     }
 
   } catch (error) {
-    console.log(error);
-    alert(error.response.data.message);
-    console.error('Error occurred while saving:', error);
+    showErrorAlert(error.response.data.message);
   }
 };
 
@@ -198,7 +198,7 @@ const toggleTimer = () => {
       time.value--;
       if (time.value === 0) {
         clearInterval(interval);
-        alert("인증시간이 지났습니다. 다시 회원가입 해주세요");
+        showErrorAlert("인증시간이 지났습니다. 다시 회원가입 해주세요");
         timerActive.value = false;
       }
     }

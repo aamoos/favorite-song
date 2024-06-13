@@ -50,34 +50,6 @@ const searchSong = async () => {
   }
 };
 
-//즐겨찾기
-// const favoriteSong = async (song) => {
-  
-//   try {
-//     const response = await axios.post('/api/favoriteSong', {
-//       brand: search.brand
-//       , no: song.no
-//       , singer: song.singer
-//       , title: song.title
-//       , userId: store.getters.getUser.sub
-//     });
-//     console.log(response)
-//     alert("즐겨찾기가 삭제되었습니다.")
-//     searchSong();
-//   } catch (error) {
-//     console.error('Error occurred while saving:', error);
-//   } finally {
-//     loading.value = false; // 데이터 로딩 완료 후 플래그 해제
-//   }
-// }
-
-// //유튜브검색
-// const searchYoutube = (song) => {
-//   const searchVal = song.singer + " " + song.title;
-//   const youtubeLink = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchVal)}`;
-//   window.open(youtubeLink, '_blank');
-// };
-
 // 추가로 불러올 데이터가 있는지 확인하고, 있다면 검색 함수 호출
 const checkAndLoadMoreData = () => {
   const scrollPosition = window.innerHeight + window.scrollY;

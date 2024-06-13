@@ -1,4 +1,5 @@
 // src/utils/songUtils.js
+import { showSuccessAlert } from '@/utils/swal';
 
 export const favoriteSong = async (song, axios, store) => {
     try {
@@ -15,11 +16,11 @@ export const favoriteSong = async (song, axios, store) => {
     console.log(response);
 
     if (response.data.body.liked) {
-      alert("즐겨찾기가 추가되었습니다.");
+      showSuccessAlert("즐겨찾기가 추가되었습니다.");
       song.liked = true;
     } else {
-    console.log(song);
-      alert("즐겨찾기가 삭제되었습니다.");
+      showSuccessAlert("즐겨찾기가 삭제되었습니다.");
+      song.liked = false;
     }
   } catch (error) {
     console.error('Error occurred while saving:', error);

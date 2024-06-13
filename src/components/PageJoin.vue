@@ -108,6 +108,8 @@ import { helpers, required, email } from "@vuelidate/validators";
 
 const router = inject('router');
 const axios = inject('$axios');
+const showErrorAlert = inject('showErrorAlert');
+const showSuccessAlert = inject('showSuccessAlert');
 
 const user = reactive({
   userId: '',
@@ -172,7 +174,7 @@ const signupCheck = async () => {
       toggleTimer();
     }
   } catch (error) {
-    alert(error.response.data.message)
+    showErrorAlert(error.response.data.message);
     console.error('Error occurred while saving:', error);
   }
 };
@@ -209,14 +211,13 @@ const join = async () => {
       ,checkCode: user.checkCode
     });
 
-    console.log(response);
     if(response.data.statusCode == "OK"){
-      alert("회원가입이 완료되었습니다.");
+      showSuccessAlert("회원가입이 완료되었습니다.");
       goLoginPage();
     }
 
   } catch (error) {
-    alert(error.response.data.message);
+    showErrorAlert(error.response.data.message);
     console.error('Error occurred while saving:', error);
   }
 };
@@ -230,7 +231,7 @@ const toggleTimer = () => {
       time.value--;
       if (time.value === 0) {
         clearInterval(interval);
-        alert("인증시간이 지났습니다. 다시 회원가입 해주세요");
+        showErrorAlert("인증시간이 지났습니다. 다시 회원가입 해주세요");
         timerActive.value = false;
       }
     }

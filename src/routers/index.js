@@ -1,3 +1,4 @@
+import { inject } from 'vue';
 import { createWebHistory, createRouter } from "vue-router";
 import PageLogin from "@/components/PageLogin.vue";
 import PageJoin from "@/components/PageJoin.vue";
@@ -8,6 +9,7 @@ import PageFavorite from "@/components/PageFavorite.vue";
 
 //oauth2 redirect
 //import PageRedirect from "@/components/PageRedirect.vue";
+const showErrorAlert = inject('showErrorAlert');
 
 const routes = [
     {
@@ -64,7 +66,7 @@ router.beforeEach(function (to, _, next) {
     const access_token = localStorage.getItem('accessToken');
     if (!access_token) {
       if (to.meta.requiresAuth) {
-        alert("로그인 후 이용해주세요.");
+        showErrorAlert("로그인 후 이용해주세요.");
         next("/");
       } else {
         next();

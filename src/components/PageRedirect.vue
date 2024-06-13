@@ -9,11 +9,12 @@ import { inject, onMounted } from 'vue';
 const router = inject('router');
 const store = inject('store');
 const jwtDecode = inject('jwtDecode');
+const showErrorAlert = inject('showErrorAlert');
 
 onMounted(() => {
     const token = router.currentRoute.value.query.token
     const refreshToken = router.currentRoute.value.query.refreshToken
-    alert(token);
+
     if (token) {
         store.commit('setToken', token);
         store.commit('setUser', jwtDecode.decode(token));
@@ -22,7 +23,7 @@ onMounted(() => {
         localStorage.setItem('refreshToken', refreshToken);
         router.push("/search");
     } else {
-        window.alert('로그인에 실패하였습니다.')
+        showErrorAlert('로그인에 실패하였습니다.');
         router.push("/");
     }
 });
