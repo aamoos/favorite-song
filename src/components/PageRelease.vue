@@ -1,6 +1,6 @@
 <!-- src/components/PageRelease.vue -->
 <template>
-  <div class="container mx-auto py-4 mb-16 max-h-screen">
+  <div class="container mx-auto py-4 mb-16 max-h-screen px-4 sm:max-w-screen-sm sm:px-6 lg:max-w-screen-lg lg:px-8">
     <h1 class="text-3xl font-semibold text-gray-800 dark:text-white mb-4 text-left">출시일검색</h1>
     <SearchComponent :search="search" @searchSong="searchSong" />
     <ListComponent :songs="songs" @favoriteSong="favoriteSong" @searchYoutube="searchYoutube" />
