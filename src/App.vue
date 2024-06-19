@@ -1,20 +1,21 @@
 <template>
-  <PageHeader/> <!-- 헤더 컴포넌트 -->
+  <PageHeader /> <!-- 헤더 컴포넌트 -->
   <div class="parent-container">
-    
-    <router-view/>  <!-- 페이지 이동이 표시될 곳 -->
+
+    <router-view /> <!-- 페이지 이동이 표시될 곳 -->
   </div>
-  <PageFooter/> <!-- 푸터 컴포넌트 -->
+  <!-- 푸터 컴포넌트 -->
+  <!-- <PageFooter /> -->
 </template>
 
 <script>
 import PageHeader from '@/components/PageHeader'
-import PageFooter from '@/components/PageFooter'
+// import PageFooter from '@/components/PageFooter'
 
 export default {
   name: 'App',
   components: {
-    PageFooter,
+    // PageFooter,
     PageHeader
   }
 }
