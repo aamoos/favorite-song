@@ -122,7 +122,7 @@ const passwordFind = () => {
 onMounted(() => {
   const token = router.currentRoute.value.query.token
   const refreshToken = router.currentRoute.value.query.refreshToken
-  alert("token : " + token)
+  showErrorAlert(token)
   if (token) {
     store.commit('setToken', token);
     store.commit('setUser', jwtDecode.decode(token));
