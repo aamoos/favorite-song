@@ -120,9 +120,14 @@ const passwordFind = () => {
 }
 
 onMounted(() => {
-  const token = localStorage.getItem('accessToken');
-  const refreshToken = localStorage.getItem('refreshToken');
-  showErrorAlert(token)
+  let token = router.currentRoute.value.query.token
+  let refreshToken = router.currentRoute.value.query.refreshToken
+  
+  if(token === undefined){
+    token = localStorage.getItem('accessToken');
+    refreshToken = localStorage.getItem('refreshToken');
+  }
+
   if (token) {
     store.commit('setToken', token);
     store.commit('setUser', jwtDecode.decode(token));
