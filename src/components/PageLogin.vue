@@ -120,8 +120,8 @@ const passwordFind = () => {
 }
 
 onMounted(() => {
-  const token = router.currentRoute.value.query.token
-  const refreshToken = router.currentRoute.value.query.refreshToken
+  const token = localStorage.getItem('accessToken');
+  const refreshToken = localStorage.getItem('refreshToken');
   showErrorAlert(token)
   if (token) {
     store.commit('setToken', token);
