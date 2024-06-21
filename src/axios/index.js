@@ -64,7 +64,8 @@ instance.interceptors.response.use(
           const response = await axios.post('/auth/refresh', {
             refreshToken: localStorage.getItem('refreshToken')
           })
-          const token = response.data.token
+          console.log(response.data);
+          const token = response.data.accessToken
           const refreshToken = response.data.refreshToken;
 
           // const jwtTokenExp = response.data.expires_at
