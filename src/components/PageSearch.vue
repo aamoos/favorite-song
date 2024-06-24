@@ -14,7 +14,7 @@ import ListComponent from '@/components/ListComponent.vue';
 import { favoriteSong, searchYoutube } from '@/utils/songUtils.js';
 
 const axios = inject('$axios');
-const store = inject('store');
+//const store = inject('store');
 
 const search = reactive({
   brand: 'kumyoung',
@@ -46,7 +46,7 @@ const searchSong = async () => {
         , searchVal: search.searchVal
         , limit: search.limit
         , offset: search.offset
-        , userId: store.getters.getUser.sub
+        //, userId: store.getters.getUser.sub
         , urlTarget: 'search'
     });
     console.log(response)

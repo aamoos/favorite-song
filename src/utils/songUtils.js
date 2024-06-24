@@ -1,14 +1,15 @@
 // src/utils/songUtils.js
 import { showSuccessAlert } from '@/utils/swal';
 
-export const favoriteSong = async (song, axios, store) => {
+//export const favoriteSong = async (song, axios, store) => {
+export const favoriteSong = async (song, axios) => {
     try {
         const response = await axios.post('/api/favoriteSong', {
         brand: song.brand,
         no: song.no,
         singer: song.singer,
         title: song.title,
-        userId: store.getters.getUser.sub,
+        //userId: store.getters.getUser.sub,
         composer: song.composer,
         lyricist: song.lyricist,
         releaseDate: song.release

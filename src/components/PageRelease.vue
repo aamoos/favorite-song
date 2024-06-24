@@ -14,7 +14,7 @@ import ListComponent from '@/components/ListComponent.vue';
 import { favoriteSong, searchYoutube } from '@/utils/songUtils.js';
 
 const axios = inject('$axios');
-const store = inject('store');
+//const store = inject('store');
 
 const currentDate = () => {
   const today = new Date();
@@ -55,7 +55,7 @@ const searchSong = async () => {
         , searchDate: search.searchDate.replaceAll('-', '')
         , limit: search.limit
         , offset: search.offset
-        , userId: store.getters.getUser.sub
+        //, userId: store.getters.getUser.sub
         , urlTarget: 'release'
     });
     console.log(response)
