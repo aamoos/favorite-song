@@ -4,7 +4,7 @@ import { showSuccessAlert } from '@/utils/swal';
 //export const favoriteSong = async (song, axios, store) => {
 export const favoriteSong = async (song, axios) => {
     try {
-      const response = await axios.post('https://favoritesong.onrender.com/api/favoriteSong', {
+      const response = await axios.post(process.env.VUE_APP_BACKEND_URL+'/api/favoriteSong', {
         brand: song.brand,
         no: song.no,
         singer: song.singer,

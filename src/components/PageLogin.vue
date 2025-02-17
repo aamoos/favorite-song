@@ -60,11 +60,11 @@
           로그인</button>
       </div>
 
-      <!-- <div class="mt-4">
+      <div class="mt-4">
         <button @click="test()"
           class="flex w-full justify-center rounded-md bg-[#FFCD00] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#E6B800] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFCD00]">테스트</button>
       </div> -->
-      <!-- </form> -->
+      <!-- </form>
     </div>
   </div>
 </template>
@@ -83,12 +83,12 @@ const user = reactive({
   password: '',
 });
 
-/**
+
  const test = async () => {
    console.log(process.env.VUE_APP_BACKEND_URL);
    console.log(process.env.VUE_APP_FRONTEND_URL);
  }
- **/
+ 
 
 //로그인
 const login = async () => {
@@ -107,8 +107,8 @@ const login = async () => {
 
 //소셜로그인
 const socialLogin = (target) => {
-  //window.location.href = process.env.VUE_APP_BACKEND_URL + '/oauth2/authorize/' + target + '?redirect_uri=' + process.env.VUE_APP_FRONTEND_URL + '/oauth2/redirect';
-  window.location.href = 'https://favoritesong.onrender.com' + '/oauth2/authorize/' + target + '?redirect_uri=' + 'https://favorite-song-ten.vercel.app' + '/oauth2/redirect';
+  window.location.href = process.env.VUE_APP_BACKEND_URL + '/oauth2/authorize/' + target + '?redirect_uri=' + process.env.VUE_APP_FRONTEND_URL + '/oauth2/redirect';
+  //window.location.href = 'https://favoritesong.onrender.com' + '/oauth2/authorize/' + target + '?redirect_uri=' + 'https://favorite-song-ten.vercel.app' + '/oauth2/redirect';
 };
 
 

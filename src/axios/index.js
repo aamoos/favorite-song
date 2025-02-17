@@ -6,8 +6,8 @@ import routers from '@/routers/index'      //router
 import axios from 'axios'
 
 export const instance = axios.create({
-    // baseURL: process.env.VUE_APP_FRONTEND_URL
-  baseURL: "https://favorite-song-ten.vercel.app"
+     baseURL: process.env.VUE_APP_FRONTEND_URL
+  //baseURL: "https://favorite-song-ten.vercel.app"
 })
 
 // Add a request interceptor
@@ -62,7 +62,7 @@ instance.interceptors.response.use(
         originalRequest._retry = true
         try {
           // JWT 토큰 재발급 요청
-          const response = await axios.post('https://favoritesong.onrender.com/auth/refresh', {
+          const response = await axios.post(process.env.VUE_APP_BACKEND_URL+'/auth/refresh', {
             refreshToken: localStorage.getItem('refreshToken')
           })
           console.log(response.data);

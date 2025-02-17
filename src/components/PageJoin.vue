@@ -162,7 +162,7 @@ const signupCheck = async () => {
   }
 
   try {
-    const response = await axios.post('https://favoritesong.onrender.com/auth/signupCheck', {
+    const response = await axios.post(process.env.VUE_APP_BACKEND_URL+'/auth/signupCheck', {
       userId: user.userId
     });
 
@@ -182,7 +182,7 @@ const signupCheck = async () => {
 //이메일 발송
 const sendEmail = async (type) => {
   try {
-    const response = await axios.post('https://favoritesong.onrender.com/auth/sendEmail', {
+    const response = await axios.post(process.env.VUE_APP_BACKEND_URL+'/auth/sendEmail', {
        type: type
       ,userId: user.userId
     });
@@ -204,7 +204,7 @@ const join = async () => {
   }
 
   try {
-    const response = await axios.post('https://favoritesong.onrender.com/auth/signup', {
+    const response = await axios.post(process.env.VUE_APP_BACKEND_URL+'/auth/signup', {
        userId: user.userId
       ,password: user.password
       ,userName: user.userName
