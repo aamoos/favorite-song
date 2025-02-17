@@ -6,7 +6,8 @@ import routers from '@/routers/index'      //router
 import axios from 'axios'
 
 export const instance = axios.create({
-    baseURL: process.env.VUE_APP_FRONTEND_URL
+    // baseURL: process.env.VUE_APP_FRONTEND_URL
+  baseURL: "https://favorite-song-ten.vercel.app"
 })
 
 // Add a request interceptor

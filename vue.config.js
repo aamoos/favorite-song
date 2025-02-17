@@ -2,8 +2,10 @@ const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
   devServer: {
     // https: true, // HTTPS 사용
-    port : process.env.VUE_APP_PORT,
-    proxy : process.env.VUE_APP_BACKEND_URL,
+    // port : process.env.VUE_APP_PORT,
+    // proxy : process.env.VUE_APP_BACKEND_URL,
+    port: 3000,
+    proxy: "https://favoritesong.onrender.com",
     allowedHosts: "all"
   },
   transpileDependencies: true,
