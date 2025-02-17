@@ -16,7 +16,6 @@ app.use(VueSweetalert2);
 
 app.provide('$axios', instance);
 app.provide('router', router);
-app.provide('store', store);
 app.provide('jwtDecode', jwtDecode);
 app.provide('showErrorAlert', showErrorAlert);
 app.provide('showSuccessAlert', showSuccessAlert);
