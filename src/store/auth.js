@@ -15,7 +15,7 @@ const getters = {
 const actions = {
   async login({ commit }, credentials) {
     console.log(credentials);
-    const response = await axios.post('/auth/login', credentials);
+    const response = await axios.post('https://favoritesong.onrender.com/auth/login', credentials);
     const token = response.data.accessToken;
     const refreshToken = response.data.refreshToken;
     //jwt token 로컬스토리지에 저장

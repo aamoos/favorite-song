@@ -131,7 +131,7 @@ const passwordFindCheck = async () => {
   }
 
   try {
-    const response = await axios.post('/auth/passwordFindCheck', {
+    const response = await axios.post('https://favoritesong.onrender.com/auth/passwordFindCheck', {
        userId: user.userId
       ,userName: user.userName
     });
@@ -152,7 +152,7 @@ const passwordFindCheck = async () => {
 //이메일 발송
 const sendEmail = async (type) => {
   try {
-    const response = await axios.post('/auth/sendEmail', {
+    const response = await axios.post('https://favoritesong.onrender.com/auth/sendEmail', {
        type: type
       ,userId: user.userId
     });
@@ -174,7 +174,7 @@ const passwordFind = async () => {
   }
 
   try {
-    const response = await axios.post('/auth/passwordFind', {
+    const response = await axios.post('https://favoritesong.onrender.com/auth/passwordFind', {
        userId: user.userId
       ,checkCode: user.checkCode
     });

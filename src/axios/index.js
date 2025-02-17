@@ -62,7 +62,7 @@ instance.interceptors.response.use(
         originalRequest._retry = true
         try {
           // JWT 토큰 재발급 요청
-          const response = await axios.post('/auth/refresh', {
+          const response = await axios.post('https://favoritesong.onrender.com/auth/refresh', {
             refreshToken: localStorage.getItem('refreshToken')
           })
           console.log(response.data);
