@@ -33,7 +33,7 @@ const searchSong = async () => {
   if (loading.value) return; // 이미 데이터를 불러오고 있는 경우 중복 호출 방지
   loading.value = true; // 데이터를 불러오는 중이라고 플래그 설정
   try {
-    const response = await axios.post('/api/searchFavoriteSong', {
+    const response = await axios.post('https://favoritesong.onrender.com/api/searchFavoriteSong', {
           brand: search.brand
         , searchType: search.searchType
         , searchVal: search.searchVal
