@@ -6,6 +6,7 @@ import PagePasswordFind from "@/components/PagePasswordFind.vue";
 import PageRelease from "@/components/PageRelease.vue";
 import PageSearch from "@/components/PageSearch.vue";
 import PageFavorite from "@/components/PageFavorite.vue";
+import Oauth2Redirect from "@/components/Oauth2Redirect.vue";
 
 const routes = [
   {
@@ -48,7 +49,7 @@ const routes = [
   {
     path: '/oauth2/redirect',
     name: "Oauth2Redirect",
-    component: PageLogin,
+    component: Oauth2Redirect,
     meta: { requiresAuth: false },
   }
 ];
